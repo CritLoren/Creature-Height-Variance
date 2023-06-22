@@ -1,0 +1,9 @@
+{
+  "RaceGenderSettings": {
+    "HighElfRace_Female": {
+      "MinHeightScale": 1.05,
+      "MaxHeightScale": 1.25
+    }
+  },
+  "IgnorePlayerRecord": true
+}

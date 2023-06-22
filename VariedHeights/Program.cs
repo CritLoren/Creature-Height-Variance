@@ -26,27 +26,50 @@ namespace VariedHeights
         // A method to run the patch on a given load order
         private static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
+            
+            var configText = File.ReadAllText(state.RetrieveConfigFile("VariedHeights.json"));
+
             // Loop through all the NPC records in the load order
             foreach (INpcGetter npc in state.LoadOrder.PriorityOrder.Npc().WinningOverrides())
             {
-                double min = settings.MinHeightScale;
-                double max = settings.MaxHeightScale;
-
+                
                 // Skip the player record if the setting is enabled
                 if (settings.IgnorePlayerRecord && npc.FormKey.ID == 0x00000007) continue;
 
-                // Generate a random height for the NPC within the range using a deterministic seed based on their form ID
-                var seed = npc.FormKey.ID.GetHashCode();
-                var random = new Random(seed);
-                var height = min + (max - min) * (float)random.NextDouble();
+                // Get the race and gender of the NPC
+                var race = npc.Race.TryResolve(state.LinkCache);
+                var gender = npc.Configuration.Flags.HasFlag(NpcConfiguration.Flag.Female) ? "Female" : "Male";
+
+                // Get the key for the settings dictionary based on the race and gender
+                var key = $"{race?.EditorID}_{gender}";
 
                 // Create a new NPC record with the modified height and add it to the output mod
                 var modifiedNpc = state.PatchMod.Npcs.GetOrAddAsOverride(npc);
 
-                Console.WriteLine(String.Format("Changed {0} {1} from the height of {2} to {3}",
-                        modifiedNpc.FormKey.ID, modifiedNpc.Name, modifiedNpc.Height, (float)height));
+                // Check if the key exists in the dictionary or is player
+                if (settings.RaceGenderSettings.ContainsKey(key))
+                {
+                    // Get the minimum and maximum values from the dictionary
+                    var min = settings.RaceGenderSettings[key].MinHeightScale;
+                    var max = settings.RaceGenderSettings[key].MaxHeightScale;
 
-                modifiedNpc.Height = (float)height;
+                    // Generate a random height for the NPC within the range using a deterministic seed based on their form ID
+                    var seed = npc.FormKey.ID.GetHashCode();
+                    var random = new Random(seed);
+                    var height = min + (max - min) * (float)random.NextDouble();
+
+                    Console.WriteLine(String.Format("{0}: {1} changed from {2} units to {3} units.",
+                            modifiedNpc.FormKey.ID, modifiedNpc.Name, modifiedNpc.Height, (float)height));
+
+                    modifiedNpc.Height = (float)height;
+                }
+                else
+                {
+                    // Skip the NPC if the key does not exist in the dictionary
+                    Console.WriteLine(String.Format("{0}: {1} skipped due to height for '{2}' not being configured.",
+                            modifiedNpc.FormKey.ID, modifiedNpc.Name, key));
+                    continue;
+                }
             }
         }
     }
