@@ -1,6 +1,6 @@
 {
   "Nickname": "Varied Heights",
-  "Visibility": "Visible",
+  "Visibility": "Hidden",
   "OneLineDescription": "Vary the range of the height of NPCs further",
   "LongDescription": "Define the minimum and maximum height for NPCs and this patcher will randomize all NPCs in a deterministic way",
   "PreferredAutoVersioning": "Default",
