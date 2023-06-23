@@ -27,19 +27,22 @@ namespace NPCVariance
         [SynthesisSettingName("Race and Gender Settings")]
         public Dictionary<string, BaseSettings> RaceGenderSettings { get; set; } = new()
         {
-            { "HighElfRace",    new() { MinMaleHeightScale = 1.050, MaxMaleHeightScale = 1.300, MinFemaleHeightScale = 1.025, MaxFemaleHeightScale = 1.275 } },
-            { "OrcRace",        new() { MinMaleHeightScale = 1.025, MaxMaleHeightScale = 1.275, MinFemaleHeightScale = 1.000, MaxFemaleHeightScale = 1.250 } },
-            { "NordRace",       new() { MinMaleHeightScale = 1.000, MaxMaleHeightScale = 1.250, MinFemaleHeightScale = 0.975, MaxFemaleHeightScale = 1.225 } },
-            { "RedguardRace",   new() { MinMaleHeightScale = 0.975, MaxMaleHeightScale = 1.225, MinFemaleHeightScale = 0.950, MaxFemaleHeightScale = 1.200 } },
-            { "ArgonianRace",   new() { MinMaleHeightScale = 0.950, MaxMaleHeightScale = 1.200, MinFemaleHeightScale = 0.925, MaxFemaleHeightScale = 1.175 } },
-            { "WoodElfRace",    new() { MinMaleHeightScale = 0.925, MaxMaleHeightScale = 1.175, MinFemaleHeightScale = 0.900, MaxFemaleHeightScale = 1.150 } },
-            { "BretonRace",     new() { MinMaleHeightScale = 0.900, MaxMaleHeightScale = 1.150, MinFemaleHeightScale = 0.875, MaxFemaleHeightScale = 1.125 } },
-            { "ImperialRace",   new() { MinMaleHeightScale = 0.875, MaxMaleHeightScale = 1.125, MinFemaleHeightScale = 0.850, MaxFemaleHeightScale = 1.100 } },
-            { "DarkElfRace",    new() { MinMaleHeightScale = 0.850, MaxMaleHeightScale = 1.100, MinFemaleHeightScale = 0.825, MaxFemaleHeightScale = 1.100 } },
-            { "KhajiitRace",    new() { MinMaleHeightScale = 0.825, MaxMaleHeightScale = 1.075, MinFemaleHeightScale = 0.800, MaxFemaleHeightScale = 1.100 } },
+            { "DefaultRace",        new() { MinMaleHeightScale = 0.800, MaxMaleHeightScale = 1.200, MinFemaleHeightScale = 0.775, MaxFemaleHeightScale = 1.175 } },
 
-            { "ElderRace",      new() { MinMaleHeightScale = 0.800, MaxMaleHeightScale = 1.125, MinFemaleHeightScale = 0.775, MaxFemaleHeightScale = 1.100 } },
-            { "NordRaceChild",  new() { MinMaleHeightScale = 1.000, MaxMaleHeightScale = 1.250, MinFemaleHeightScale = 0.975, MaxFemaleHeightScale = 1.225 } }
+            { "HighElfRace",        new() { MinMaleHeightScale = 1.050, MaxMaleHeightScale = 1.300, MinFemaleHeightScale = 1.025, MaxFemaleHeightScale = 1.275 } },
+            { "OrcRace",            new() { MinMaleHeightScale = 1.025, MaxMaleHeightScale = 1.275, MinFemaleHeightScale = 1.000, MaxFemaleHeightScale = 1.250 } },
+            { "NordRace",           new() { MinMaleHeightScale = 1.000, MaxMaleHeightScale = 1.250, MinFemaleHeightScale = 0.975, MaxFemaleHeightScale = 1.225 } },
+            { "RedguardRace",       new() { MinMaleHeightScale = 0.975, MaxMaleHeightScale = 1.225, MinFemaleHeightScale = 0.950, MaxFemaleHeightScale = 1.200 } },
+            { "ArgonianRace",       new() { MinMaleHeightScale = 0.950, MaxMaleHeightScale = 1.200, MinFemaleHeightScale = 0.925, MaxFemaleHeightScale = 1.175 } },
+            { "WoodElfRace",        new() { MinMaleHeightScale = 0.925, MaxMaleHeightScale = 1.175, MinFemaleHeightScale = 0.900, MaxFemaleHeightScale = 1.150 } },
+            { "BretonRace",         new() { MinMaleHeightScale = 0.900, MaxMaleHeightScale = 1.150, MinFemaleHeightScale = 0.875, MaxFemaleHeightScale = 1.125 } },
+            { "ImperialRace",       new() { MinMaleHeightScale = 0.875, MaxMaleHeightScale = 1.125, MinFemaleHeightScale = 0.850, MaxFemaleHeightScale = 1.100 } },
+            { "DarkElfRace",        new() { MinMaleHeightScale = 0.850, MaxMaleHeightScale = 1.100, MinFemaleHeightScale = 0.825, MaxFemaleHeightScale = 1.100 } },
+            { "KhajiitRace",        new() { MinMaleHeightScale = 0.825, MaxMaleHeightScale = 1.075, MinFemaleHeightScale = 0.800, MaxFemaleHeightScale = 1.100 } },
+
+            { "ElderRace",          new() { MinMaleHeightScale = 0.800, MaxMaleHeightScale = 1.125, MinFemaleHeightScale = 0.775, MaxFemaleHeightScale = 1.100 } },
+            { "NordRaceChild",      new() { MinMaleHeightScale = 1.000, MaxMaleHeightScale = 1.250, MinFemaleHeightScale = 0.975, MaxFemaleHeightScale = 1.225 } },
+            { "ImperialRaceChild",  new() { MinMaleHeightScale = 0.875, MaxMaleHeightScale = 1.125, MinFemaleHeightScale = 0.850, MaxFemaleHeightScale = 1.100 } }
         };
 
         [SynthesisSettingName("Also patch player record")]

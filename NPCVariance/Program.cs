@@ -93,7 +93,7 @@ namespace NPCVariance
                 {
                     // Skip the NPC if the key does not exist in the dictionary
                     if (settings.ShowDebugLogs) {
-                        Console.WriteLine(String.Format("{0}: {1} ({2}) - skipped due to height for '{3}' not being configured.",
+                        Console.WriteLine(String.Format("           {0} - {1} ({2}) skipped due to values for '{3}' not being configured.",
                                 npc.FormKey, npc.Name, npc.EditorID, key));
                     }
                     continue;
