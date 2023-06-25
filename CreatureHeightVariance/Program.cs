@@ -3,6 +3,7 @@
 // The patcher can be configured with a minimum and maximum value for each race and gender of that race
 
 using Mutagen.Bethesda;
+using Mutagen.Bethesda.FormKeys.SkyrimSE;
 using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Synthesis;
 
@@ -26,6 +27,12 @@ namespace NPCVariance
         // A method to run the patch on a given load order
         private static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
+
+            Console.WriteLine("");
+            Console.WriteLine("=================================================");
+            Console.WriteLine("Starting NPC Patching...");
+            Console.WriteLine("=================================================");
+            Console.WriteLine("");
 
             // Loop through all the NPC records in the load order
             foreach (INpcGetter npc in state.LoadOrder.PriorityOrder.Npc().WinningOverrides())
@@ -81,6 +88,33 @@ namespace NPCVariance
                     }
                     continue;
                 }
+            }
+
+            Console.WriteLine("");
+            Console.WriteLine("=================================================");
+            if (settings.PatchFurniture)
+            {
+                Console.WriteLine("Starting Furniture Patching...");
+                Console.WriteLine("=================================================");
+                Console.WriteLine("");
+
+                // Loop through all the furniture records in the load order
+                foreach (IFurnitureGetter furniture in state.LoadOrder.PriorityOrder.Furniture().WinningOverrides())
+                {
+                    if (!furniture.HasKeyword(Skyrim.Keyword.RaceToScale)) continue;
+
+                    // Create a new furniture record with the modified height and add it to the output mod
+                    var modifiedFurniture = state.PatchMod.Furniture.GetOrAddAsOverride(furniture);
+                    modifiedFurniture.Keywords?.Remove(Skyrim.Keyword.RaceToScale);
+
+                    Console.WriteLine(String.Format("{0} - {1}'s ({2}) was patched to disable actor scaling.",
+                            furniture.FormKey, modifiedFurniture.Name, modifiedFurniture.EditorID));
+                }
+            }
+            else
+            {
+                Console.WriteLine("Skipping Furniture Patching...");
+                Console.WriteLine("=================================================");
             }
         }
     }
