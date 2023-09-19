@@ -34,7 +34,7 @@ namespace NPCVariance
         public Dictionary<string, BaseSettings> RaceGenderSettings { get; set; } = new()
         {
             { "Default",            new() { MinMaleHeightScale = 0.800, MaxMaleHeightScale = 1.200, MinFemaleHeightScale = 0.775, MaxFemaleHeightScale = 1.175 } },
-            { "DefaultRace",        new() { MinMaleHeightScale = 0.900, MaxMaleHeightScale = 1.100, MinFemaleHeightScale = 0.775, MaxFemaleHeightScale = 1.075 } },
+            { "DefaultRace",        new() { MinMaleHeightScale = 0.950, MaxMaleHeightScale = 1.100, MinFemaleHeightScale = 0.775, MaxFemaleHeightScale = 1.075 } },
             { "ElderRace",          new() { MinMaleHeightScale = 0.800, MaxMaleHeightScale = 1.125, MinFemaleHeightScale = 0.775, MaxFemaleHeightScale = 1.100 } },
 
 
@@ -46,7 +46,7 @@ namespace NPCVariance
 
             { "NordRace",           new() { MinMaleHeightScale = 1.050, MaxMaleHeightScale = 1.125, MinFemaleHeightScale = 1.000, MaxFemaleHeightScale = 1.150 } },
             { "NordRaceVampire",    new() { MinMaleHeightScale = 1.050, MaxMaleHeightScale = 1.125, MinFemaleHeightScale = 1.000, MaxFemaleHeightScale = 1.150 } },
-            { "NordRaceChild",      new() { MinMaleHeightScale = 1.075, MaxMaleHeightScale = 1.075, MinFemaleHeightScale = 1.000, MaxFemaleHeightScale = 1.100 } },
+            { "NordRaceChild",      new() { MinMaleHeightScale = 1.000, MaxMaleHeightScale = 1.075, MinFemaleHeightScale = 1.050, MaxFemaleHeightScale = 1.100 } },
 
             { "ArgonianRace",       new() { MinMaleHeightScale = 0.950, MaxMaleHeightScale = 1.100, MinFemaleHeightScale = 1.100, MaxFemaleHeightScale = 1.125 } },
             { "ArgonianRaceVampire",new() { MinMaleHeightScale = 0.950, MaxMaleHeightScale = 1.100, MinFemaleHeightScale = 1.100, MaxFemaleHeightScale = 1.125 } },
@@ -55,28 +55,28 @@ namespace NPCVariance
             { "RedguardRaceVampire",new() { MinMaleHeightScale = 0.975, MaxMaleHeightScale = 1.075, MinFemaleHeightScale = 0.950, MaxFemaleHeightScale = 1.075 } },
             { "RedguardRaceChild",  new() { MinMaleHeightScale = 0.975, MaxMaleHeightScale = 1.075, MinFemaleHeightScale = 0.950, MaxFemaleHeightScale = 1.075 } },
 
-            { "WoodElfRace",        new() { MinMaleHeightScale = 0.925, MaxMaleHeightScale = 1.075, MinFemaleHeightScale = 0.900, MaxFemaleHeightScale = 1.050 } },
-            { "WoodElfRaceVampire", new() { MinMaleHeightScale = 0.925, MaxMaleHeightScale = 1.075, MinFemaleHeightScale = 0.900, MaxFemaleHeightScale = 1.050 } },
+            { "WoodElfRace",        new() { MinMaleHeightScale = 0.975, MaxMaleHeightScale = 1.075, MinFemaleHeightScale = 0.900, MaxFemaleHeightScale = 1.050 } },
+            { "WoodElfRaceVampire", new() { MinMaleHeightScale = 0.975, MaxMaleHeightScale = 1.075, MinFemaleHeightScale = 0.900, MaxFemaleHeightScale = 1.050 } },
 
-            { "BretonRace",         new() { MinMaleHeightScale = 0.900, MaxMaleHeightScale = 1.000, MinFemaleHeightScale = 0.875, MaxFemaleHeightScale = 1.025 } },
-            { "BretonRaceVampire",  new() { MinMaleHeightScale = 0.900, MaxMaleHeightScale = 1.000, MinFemaleHeightScale = 0.875, MaxFemaleHeightScale = 1.025 } },
-            { "BretonRaceChild",    new() { MinMaleHeightScale = 0.900, MaxMaleHeightScale = 1.000, MinFemaleHeightScale = 0.875, MaxFemaleHeightScale = 1.025 } },
+            { "BretonRace",         new() { MinMaleHeightScale = 0.975, MaxMaleHeightScale = 1.050, MinFemaleHeightScale = 0.975, MaxFemaleHeightScale = 1.025 } },
+            { "BretonRaceVampire",  new() { MinMaleHeightScale = 0.975, MaxMaleHeightScale = 1.050, MinFemaleHeightScale = 0.975, MaxFemaleHeightScale = 1.025 } },
+            { "BretonRaceChild",    new() { MinMaleHeightScale = 0.975, MaxMaleHeightScale = 1.050, MinFemaleHeightScale = 0.975, MaxFemaleHeightScale = 1.025 } },
 
-            { "ImperialRace",       new() { MinMaleHeightScale = 0.875, MaxMaleHeightScale = 1.050, MinFemaleHeightScale = 0.850, MaxFemaleHeightScale = 1.050 } },
-            { "ImperialRaceVampire",new() { MinMaleHeightScale = 0.875, MaxMaleHeightScale = 1.050, MinFemaleHeightScale = 0.850, MaxFemaleHeightScale = 1.050 } },
-            { "ImperialRaceChild",  new() { MinMaleHeightScale = 0.875, MaxMaleHeightScale = 1.025, MinFemaleHeightScale = 0.950, MaxFemaleHeightScale = 1.050 } },
+            { "ImperialRace",       new() { MinMaleHeightScale = 0.950, MaxMaleHeightScale = 1.050, MinFemaleHeightScale = 0.950, MaxFemaleHeightScale = 1.050 } },
+            { "ImperialRaceVampire",new() { MinMaleHeightScale = 0.950, MaxMaleHeightScale = 1.050, MinFemaleHeightScale = 0.950, MaxFemaleHeightScale = 1.050 } },
+            { "ImperialRaceChild",  new() { MinMaleHeightScale = 0.950, MaxMaleHeightScale = 1.025, MinFemaleHeightScale = 0.975, MaxFemaleHeightScale = 1.075 } },
 
-            { "DarkElfRace",        new() { MinMaleHeightScale = 0.850, MaxMaleHeightScale = 0.950, MinFemaleHeightScale = 0.825, MaxFemaleHeightScale = 1.000 } },
-            { "DarkElfRaceVampire", new() { MinMaleHeightScale = 0.850, MaxMaleHeightScale = 0.950, MinFemaleHeightScale = 0.825, MaxFemaleHeightScale = 1.000 } },
+            { "DarkElfRace",        new() { MinMaleHeightScale = 0.925, MaxMaleHeightScale = 1.025, MinFemaleHeightScale = 0.925, MaxFemaleHeightScale = 1.000 } },
+            { "DarkElfRaceVampire", new() { MinMaleHeightScale = 0.925, MaxMaleHeightScale = 1.025, MinFemaleHeightScale = 0.925, MaxFemaleHeightScale = 1.000 } },
 
-            { "KhajiitRace",        new() { MinMaleHeightScale = 0.825, MaxMaleHeightScale = 0.925, MinFemaleHeightScale = 0.800, MaxFemaleHeightScale = 0.925 } },
-            { "KhajiitRaceVampire", new() { MinMaleHeightScale = 0.825, MaxMaleHeightScale = 0.925, MinFemaleHeightScale = 0.800, MaxFemaleHeightScale = 0.925 } },
+            { "KhajiitRace",        new() { MinMaleHeightScale = 0.900, MaxMaleHeightScale = 1.025, MinFemaleHeightScale = 0.925, MaxFemaleHeightScale = 1.000 } },
+            { "KhajiitRaceVampire", new() { MinMaleHeightScale = 0.900, MaxMaleHeightScale = 1.025, MinFemaleHeightScale = 0.925, MaxFemaleHeightScale = 1.000 } },
 
 
 
             { "SnowElfRace",        new() { MinMaleHeightScale = 1.050, MaxMaleHeightScale = 1.150, MinFemaleHeightScale = 1.025, MaxFemaleHeightScale = 1.175 } },
             { "FalmerRace",         new() { MinMaleHeightScale = 0.850, MaxMaleHeightScale = 0.950, MinFemaleHeightScale = 0.825, MaxFemaleHeightScale = 1.000 } },
-            { "DA13AfflictedRace",  new() { MinMaleHeightScale = 0.900, MaxMaleHeightScale = 1.000, MinFemaleHeightScale = 0.875, MaxFemaleHeightScale = 1.025 } }
+            { "DA13AfflictedRace",  new() { MinMaleHeightScale = 0.900, MaxMaleHeightScale = 1.100, MinFemaleHeightScale = 0.975, MaxFemaleHeightScale = 1.125 } }
         };
 
         [SynthesisSettingName("Also patch furniture to disable scaling")]
