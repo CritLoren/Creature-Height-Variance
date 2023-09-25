@@ -12,10 +12,10 @@ namespace NPCVariance
     public class Program
     {
         static Lazy<Settings> _settings = null!;
-        static public Settings settings => _settings.Value;
+        public static Settings settings => _settings.Value;
+
         public static async Task<int> Main(string[] args)
         {
-
             // Run the patcher
             return await SynthesisPipeline.Instance
                 .AddPatch<ISkyrimMod, ISkyrimModGetter>(RunPatch)
@@ -27,7 +27,6 @@ namespace NPCVariance
         // A method to run the patch on a given load order
         private static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
-
             Console.WriteLine("");
             Console.WriteLine("=================================================");
             Console.WriteLine("Starting NPC Patching...");
@@ -37,26 +36,29 @@ namespace NPCVariance
             // Loop through all the NPC records in the load order
             foreach (INpcGetter npc in state.LoadOrder.PriorityOrder.Npc().WinningOverrides())
             {
-                
                 // Skip the player record if the setting is enabled
-                if (!settings.PatchPlayerRecord && npc.FormKey.ID == 0x00000007) continue;
-                
+                if (!settings.PatchPlayerRecord && npc.FormKey.ID == 0x00000007)
+                    continue;
+
                 // Skip if the replace only default toggle is on
-                if (settings.OnlyReplaceDefaulted && npc.Height != 1) continue;
+                if (settings.OnlyReplaceDefaulted && npc.Height != 1)
+                    continue;
 
                 // Get the race and gender of the NPC
                 var race = npc.Race.TryResolve(state.LinkCache);
-                var gender = npc.Configuration.Flags.HasFlag(NpcConfiguration.Flag.Female) ? "Female" : "Male";
+                var gender = npc.Configuration.Flags.HasFlag(NpcConfiguration.Flag.Female)
+                    ? "Female"
+                    : "Male";
 
                 // Get the key for the settings dictionary based on the race and gender
                 var key = $"{race?.EditorID}";
 
-                if (settings.ScaleEverything) key = "Default";
+                if (settings.ScaleEverything)
+                    key = "Default";
 
                 // Check if the key exists in the dictionary or is player
                 if (settings.RaceGenderSettings.ContainsKey(key))
                 {
-
                     // Create a new NPC record with the modified height and add it to the output mod
                     var modifiedNpc = state.PatchMod.Npcs.GetOrAddAsOverride(npc);
 
@@ -64,7 +66,8 @@ namespace NPCVariance
                     var min = settings.RaceGenderSettings[key].MinFemaleHeightScale;
                     var max = settings.RaceGenderSettings[key].MaxFemaleHeightScale;
 
-                    if (gender == "Male") {
+                    if (gender == "Male")
+                    {
                         min = settings.RaceGenderSettings[key].MinMaleHeightScale;
                         max = settings.RaceGenderSettings[key].MaxMaleHeightScale;
                     }
@@ -74,17 +77,34 @@ namespace NPCVariance
                     var random = new Random(seed);
                     var height = Math.Round(min + (max - min) * (float)random.NextDouble(), 3);
 
-                    Console.WriteLine(String.Format("{0} - {1}'s ({2}) height was changed from {3} units to {4} units using seed {5}.",
-                            npc.FormKey, modifiedNpc.Name, modifiedNpc.EditorID, modifiedNpc.Height, (float)height, seed));
+                    Console.WriteLine(
+                        String.Format(
+                            "{0} - {1}'s ({2}) height was changed from {3} units to {4} units using seed {5}.",
+                            npc.FormKey,
+                            modifiedNpc.Name,
+                            modifiedNpc.EditorID,
+                            modifiedNpc.Height,
+                            (float)height,
+                            seed
+                        )
+                    );
 
                     modifiedNpc.Height = (float)height;
                 }
                 else
                 {
                     // Skip the NPC if the key does not exist in the dictionary
-                    if (settings.ShowDebugLogs) {
-                        Console.WriteLine(String.Format("           {0} - {1} ({2}) skipped due to values for '{3}' not being configured.",
-                                npc.FormKey, npc.Name, npc.EditorID, key));
+                    if (settings.ShowDebugLogs)
+                    {
+                        Console.WriteLine(
+                            String.Format(
+                                "           {0} - {1} ({2}) skipped due to values for '{3}' not being configured.",
+                                npc.FormKey,
+                                npc.Name,
+                                npc.EditorID,
+                                key
+                            )
+                        );
                     }
                     continue;
                 }
@@ -99,16 +119,41 @@ namespace NPCVariance
                 Console.WriteLine("");
 
                 // Loop through all the furniture records in the load order
-                foreach (IFurnitureGetter furniture in state.LoadOrder.PriorityOrder.Furniture().WinningOverrides())
+                foreach (
+                    IFurnitureGetter furniture in state.LoadOrder.PriorityOrder
+                        .Furniture()
+                        .WinningOverrides()
+                )
                 {
-                    if (!furniture.HasKeyword(Skyrim.Keyword.RaceToScale)) continue;
+                    if (!furniture.HasKeyword(Skyrim.Keyword.RaceToScale))
+                        continue;
+
+                    if (settings.FurnitureBlacklist.Contains(furniture.ToLink()))
+                    {
+                        Console.WriteLine(
+                            String.Format(
+                                "{0} - {1}'s ({2}) was skipped due to being blacklisted.",
+                                furniture.FormKey,
+                                furniture.Name,
+                                furniture.EditorID
+                            )
+                        );
+                        continue;
+                    }
+                    ;
 
                     // Create a new furniture record with the modified height and add it to the output mod
                     var modifiedFurniture = state.PatchMod.Furniture.GetOrAddAsOverride(furniture);
                     modifiedFurniture.Keywords?.Remove(Skyrim.Keyword.RaceToScale);
 
-                    Console.WriteLine(String.Format("{0} - {1}'s ({2}) was patched to disable actor scaling.",
-                            furniture.FormKey, modifiedFurniture.Name, modifiedFurniture.EditorID));
+                    Console.WriteLine(
+                        String.Format(
+                            "{0} - {1}'s ({2}) was patched to disable actor scaling.",
+                            furniture.FormKey,
+                            modifiedFurniture.Name,
+                            modifiedFurniture.EditorID
+                        )
+                    );
                 }
             }
             else
